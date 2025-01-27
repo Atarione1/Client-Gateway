@@ -35,11 +35,14 @@ export class UsersController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersClient.send('updateUser', updateUserDto);
+    return this.usersClient.send('updateUser', {
+      ...updateUserDto,
+      id: +id,
+    });
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.usersClient.send('removeUser', id);
+    return this.usersClient.send('removeUser', +id);
   }
 }

@@ -30,16 +30,16 @@ export class TasksController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.tasksClient.send('findOneTask', id);
+    return this.tasksClient.send('findOneTask', +id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-    return this.tasksClient.send('updateTask', updateTaskDto);
+    return this.tasksClient.send('updateTask', { ...updateTaskDto, id: +id });
   }
 
-  @Delete()
+  @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.tasksClient.send('removeTask', id);
+    return this.tasksClient.send('removeTask', +id);
   }
 }
