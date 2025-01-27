@@ -33,7 +33,7 @@ export class TasksController {
     return this.tasksClient.send('findOneTask', id);
   }
 
-  @Patch()
+  @Patch(':id')
   update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
     return this.tasksClient.send('updateTask', updateTaskDto);
   }

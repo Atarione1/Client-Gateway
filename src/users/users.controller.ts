@@ -30,11 +30,11 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersClient.send('findOneUser', id);
+    return this.usersClient.send('findOneUser', +id);
   }
 
-  @Patch()
-  update(@Body() updateUserDto: UpdateUserDto) {
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersClient.send('updateUser', updateUserDto);
   }
 
